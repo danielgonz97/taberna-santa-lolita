@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta - Taberna Santa Lolita</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#111; color:#e8e0d6; min-height:100vh; }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+    text-align:center; padding:40px 20px 30px; position:relative;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .hero::after { content:''; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%); width:60px; height:3px; background:#c0392b; }
+  .logo-text { font-family:'Playfair Display',serif; font-size:36px; font-weight:800; color:#fff; letter-spacing:1px; }
+  .logo-sub { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:6px; text-transform:uppercase; color:#888; margin-top:4px; }
+  .hero-tagline { font-size:13px; color:#999; margin-top:14px; }
+
+  /* NAV TABS */
+  .tabs { display:flex; justify-content:center; gap:0; background:#1a1a1a; border-bottom:1px solid #2a2a2a; position:sticky; top:0; z-index:10; }
+  .tab { padding:14px 24px; font-size:13px; font-weight:600; color:#666; cursor:pointer; border-bottom:2px solid transparent; transition:all .2s; text-decoration:none; }
+  .tab:hover, .tab.active { color:#fff; border-bottom-color:#c0392b; }
+
+  /* CONTAINER */
+  .container { max-width:600px; margin:0 auto; padding:0 20px 40px; }
+
+  /* SECTION */
+  .section { padding-top:30px; }
+  .section-header { display:flex; align-items:center; gap:10px; margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid #222; }
+  .section-icon { font-size:24px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#fff; }
+  .section-desc { font-size:12px; color:#666; margin-top:2px; }
+
+  /* ITEM */
+  .item { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px dotted #222; }
+  .item:last-child { border-bottom:none; }
+  .item-name { font-size:14px; font-weight:500; color:#ddd; flex:1; padding-right:12px; }
+  .item-detail { font-size:11px; color:#777; font-weight:300; }
+  .item-price { font-size:14px; font-weight:600; color:#c0392b; white-space:nowrap; }
+
+  /* SUBSECTION */
+  .subsection { margin-top:18px; margin-bottom:8px; }
+  .subsection-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:600; color:#bbb; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .subsection-title::after { content:''; flex:1; height:1px; background:#222; }
+
+  /* MENU DEL DIA BANNER */
+  .banner {
+    background: linear-gradient(135deg, #c0392b, #8e1c13);
+    border-radius:14px; padding:24px; text-align:center; margin:30px 0;
+    position:relative; overflow:hidden;
+  }
+  .banner::before { content:''; position:absolute; top:-30px; right:-30px; width:100px; height:100px; background:rgba(255,255,255,0.05); border-radius:50%; }
+  .banner-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:#fff; }
+  .banner-sub { font-size:13px; color:rgba(255,255,255,0.8); margin-top:6px; }
+  .banner-price { font-size:32px; font-weight:800; color:#fff; margin-top:8px; font-family:'Playfair Display',serif; }
+  .banner-note { font-size:11px; color:rgba(255,255,255,0.6); margin-top:4px; }
+
+  /* DRINKS GRID */
+  .drinks-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .drinks-grid .item { padding:6px 0; }
+
+  /* CTA */
+  .cta-box {
+    text-align:center; padding:30px 20px; margin-top:30px;
+    background:#1a1a1a; border-radius:14px; border:1px solid #2a2a2a;
+  }
+  .cta-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; margin-bottom:6px; }
+  .cta-sub { font-size:13px; color:#888; margin-bottom:16px; }
+  .cta-btn {
+    display:inline-block; padding:14px 32px; background:#c0392b; color:#fff;
+    text-decoration:none; border-radius:50px; font-weight:600; font-size:14px;
+    transition:all .2s;
+  }
+  .cta-btn:hover { background:#e74c3c; transform:translateY(-2px); box-shadow:0 6px 20px rgba(192,57,43,0.3); }
+
+  /* FOOTER */
+  .footer { text-align:center; padding:24px 20px; font-size:12px; color:#444; border-top:1px solid #222; margin-top:30px; }
+  .footer a { color:#888; text-decoration:none; }
+
+  /* SCROLL SMOOTH */
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo-text">Santa Lolita</div>
+  <div class="logo-sub">Taberna</div>
+  <div class="hero-tagline">Tapas con alma castiza · Barrio de Salamanca, Madrid</div>
+</div>
+
+<nav class="tabs">
+  <a class="tab active" href="#comida">Comida</a>
+  <a class="tab" href="#bebidas">Bebidas</a>
+  <a class="tab" href="#copas">Copas</a>
+  <a class="tab" href="#reservar">Reservar</a>
+</nav>
+
+<div class="container">
+
+  <!-- MENU DEL DIA -->
+  <div class="banner">
+    <div class="banner-title">Menú del Día</div>
+    <div class="banner-sub">De martes a viernes · 13:00 a 15:30h</div>
+    <div class="banner-price">13,90€</div>
+  </div>
+
+  <!-- APERITIVOS -->
+  <div class="section" id="comida">
+    <div class="section-header">
+      <span class="section-icon">🫒</span>
+      <div><div class="section-title">Aperitivos</div></div>
+    </div>
+    <div class="item"><span class="item-name">Tosta de anchoas y mantequilla</span><span class="item-price">3,50€</span></div>
+    <div class="item"><span class="item-name">Gildas variadas</span><span class="item-price">2,80€/ud</span></div>
+    <div class="item"><span class="item-name">Banderilla de atún ahumado con queso</span><span class="item-price">3,30€/2ud</span></div>
+    <div class="item"><span class="item-name">Pincho de tortilla de patatas</span><span class="item-price">3,50€</span></div>
+    <div class="item"><span class="item-name">Mini hamburguesa de buey</span><span class="item-price">3,80€</span></div>
+  </div>
+
+  <!-- MOLLETES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🥖</span>
+      <div><div class="section-title">Molletes</div></div>
+    </div>
+    <div class="item"><span class="item-name">Sobrasada, miel y parmesano</span><span class="item-price">7,50€</span></div>
+    <div class="item"><span class="item-name">Lacón, queso Payoyo y salsa trufada</span><span class="item-price">8€</span></div>
+    <div class="item"><span class="item-name">Chicharrón de Cádiz y queso Payoyo</span><span class="item-price">7,50€</span></div>
+    <div class="item"><span class="item-name">Pato desmigado con mostaza a la miel</span><span class="item-price">7,50€</span></div>
+    <div class="item"><span class="item-name">Mortadela, burrata y pesto</span><span class="item-price">8,50€</span></div>
+    <div class="item"><span class="item-name">Atún ahumado y cebolla caramelizada</span><span class="item-price">8,50€</span></div>
+    <div class="item"><span class="item-name">Lomo, queso y tomate</span><span class="item-price">6,50€</span></div>
+  </div>
+
+  <!-- CONSERVAS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🐟</span>
+      <div><div class="section-title">Las Conservas de Doña Tomasa</div></div>
+    </div>
+    <div class="item"><span class="item-name">Matrimonio de anchoa y boquerón</span><span class="item-price">3,80€/ud</span></div>
+    <div class="item"><span class="item-name">Anchoas 00 (10 filetes)</span><span class="item-price">22,50€</span></div>
+    <div class="item"><span class="item-name">Pechuga de codorniz escabechada</span><span class="item-price">14€</span></div>
+    <div class="item"><span class="item-name">Anchoas del Cantábrico en aceite de oliva</span><span class="item-price">12,50€</span></div>
+    <div class="item"><span class="item-name">Boquerones en vinagre</span><span class="item-price">14€</span></div>
+    <div class="item"><span class="item-name">Mejillones grandes en escabeche</span><span class="item-price">9,50€</span></div>
+    <div class="item"><span class="item-name">Navajas picantonas</span><span class="item-price">14,50€</span></div>
+    <div class="item"><span class="item-name">Zamburiñas en salsa de vieira (ría gallega)</span><span class="item-price">9€</span></div>
+  </div>
+
+  <!-- RACIONES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🥘</span>
+      <div><div class="section-title">Raciones</div></div>
+    </div>
+    <div class="item"><span class="item-name">Bravas</span><span class="item-price">9€</span></div>
+    <div class="item"><span class="item-name">Croquetas de jamón/boletus · 7 uds</span><span class="item-price">11€</span></div>
+    <div class="item"><span class="item-name">Tequeños · 7 uds</span><span class="item-price">10€</span></div>
+    <div class="item"><span class="item-name">Torreznos</span><span class="item-price">9€</span></div>
+    <div class="item"><span class="item-name">Crujientes de pollo con miel y mostaza</span><span class="item-price">10€</span></div>
+    <div class="item"><span class="item-name">Callos a la Madrileña</span><span class="item-price">8€</span></div>
+    <div class="item"><span class="item-name">Huevos rotos con jamón y mayo trufada</span><span class="item-price">14€</span></div>
+    <div class="item"><span class="item-name">Ensalada de tomate rosa, burrata y pesto</span><span class="item-price">12€</span></div>
+    <div class="item"><span class="item-name">Ensalada tomate rosa, anchoas y boquerones</span><span class="item-price">15,50€</span></div>
+  </div>
+
+  <!-- TABLAS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🧀</span>
+      <div><div class="section-title">Tablas</div><div class="section-desc">Para compartir</div></div>
+    </div>
+    <div class="item"><span class="item-name">Chicharrón de Cádiz con Tajín y lima</span><span class="item-price">10€</span></div>
+    <div class="item"><span class="item-name">Lacón aliñado con pimentón de la Vera y AOVE</span><span class="item-price">10€</span></div>
+    <div class="item"><span class="item-name">Cecina con burrata y AOVE</span><span class="item-price">10€</span></div>
+    <div class="item"><span class="item-name">Jamón ibérico</span><span class="item-price">16€</span></div>
+    <div class="item"><span class="item-name">Quesos</span><span class="item-price">14€</span></div>
+    <div class="item"><span class="item-name">Sobrasada de Mallorca</span><span class="item-price">6€</span></div>
+  </div>
+
+  <!-- ============ BEBIDAS ============ -->
+  <div class="section" id="bebidas">
+    <div class="section-header">
+      <span class="section-icon">🍺</span>
+      <div><div class="section-title">Cervezas</div></div>
+    </div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Doble</span><span class="item-price">2,70€</span></div>
+      <div class="item"><span class="item-name">Jarra</span><span class="item-price">3,70€</span></div>
+      <div class="item"><span class="item-name">Tercio</span><span class="item-price">2,70€</span></div>
+      <div class="item"><span class="item-name">Sin filtrar</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Sin gluten</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">0,0 tostada</span><span class="item-price">2,70€</span></div>
+      <div class="item"><span class="item-name">Sin alcohol</span><span class="item-price">2,70€</span></div>
+      <div class="item"><span class="item-name">1/8 · 7/0</span><span class="item-price">3,50€</span></div>
+      <div class="item"><span class="item-name">Coronita</span><span class="item-price">3,50€</span></div>
+      <div class="item"><span class="item-name">Austral</span><span class="item-price">4,00€</span></div>
+    </div>
+  </div>
+
+  <!-- VINOS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🍷</span>
+      <div><div class="section-title">Vinos</div></div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Tintos</div>
+    </div>
+    <div class="item"><span class="item-name">Ribera</span><span class="item-price">8,00€ / 19,00€</span></div>
+    <div class="item"><span class="item-name">Rioja</span><span class="item-price">8,00€ / 19,00€</span></div>
+    <div class="item"><span class="item-name">Ramón Bilbao</span><span class="item-price">4,50€ / 27,00€</span></div>
+    <div class="subsection">
+      <div class="subsection-title">Blancos</div>
+    </div>
+    <div class="item"><span class="item-name">Verdejo</span><span class="item-price">8,00€ / 19,00€</span></div>
+    <div class="item"><span class="item-name">Albariño</span><span class="item-price">8,50€ / 18,00€</span></div>
+    <div class="item"><span class="item-name">Godello</span><span class="item-price">8,50€ / 18,00€</span></div>
+    <div class="item"><span class="item-name">Dulce</span><span class="item-price">8,50€ / 18,00€</span></div>
+    <div class="subsection">
+      <div class="subsection-title">Vermú</div>
+    </div>
+    <div class="item"><span class="item-name">Yzaguirre</span><span class="item-price">3,50€</span></div>
+    <div class="item"><span class="item-name">Petroni</span><span class="item-price">3,90€</span></div>
+    <div class="item"><span class="item-name">Tinto de verano</span><span class="item-price">3,50€</span></div>
+  </div>
+
+  <!-- REFRESCOS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🥤</span>
+      <div><div class="section-title">Refrescos</div></div>
+    </div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Agua</span><span class="item-price">2,50€</span></div>
+      <div class="item"><span class="item-name">Agua con gas</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Coca-Cola</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Coca-Cola Zero</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Fanta Naranja</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Fanta Limón</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Sprite</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Fuze Tea</span><span class="item-price">3,00€</span></div>
+      <div class="item"><span class="item-name">Tónica</span><span class="item-price">3,50€</span></div>
+      <div class="item"><span class="item-name">Red Bull</span><span class="item-price">4,50€</span></div>
+      <div class="item"><span class="item-name">Zumos</span><span class="item-price">2,50€</span></div>
+    </div>
+  </div>
+
+  <!-- COPAS -->
+  <div class="section" id="copas">
+    <div class="section-header">
+      <span class="section-icon">🥃</span>
+      <div><div class="section-title">Copas</div></div>
+    </div>
+    <div class="subsection"><div class="subsection-title">Ginebra</div></div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Larios</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Beefeater</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Puerto de Indias</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Tanqueray</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Seagram's</span><span class="item-price">7,00€</span></div>
+      <div class="item"><span class="item-name">Nordés</span><span class="item-price">8,00€</span></div>
+    </div>
+    <div class="subsection"><div class="subsection-title">Ron</div></div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Barceló</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Brugal</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Santa Teresa</span><span class="item-price">7,00€</span></div>
+      <div class="item"><span class="item-name">Havana 7</span><span class="item-price">8,00€</span></div>
+    </div>
+    <div class="subsection"><div class="subsection-title">Whisky</div></div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Jameson</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Ballantine's</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">White Label</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Red Label</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Black Label</span><span class="item-price">8,00€</span></div>
+      <div class="item"><span class="item-name">Jack Daniel's</span><span class="item-price">8,00€</span></div>
+    </div>
+    <div class="subsection"><div class="subsection-title">Vodka</div></div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Absolut</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Eristoff</span><span class="item-price">6,00€</span></div>
+    </div>
+    <div class="subsection"><div class="subsection-title">Licores</div></div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Tequila</span><span class="item-price">4,00€ / 2,50€</span></div>
+      <div class="item"><span class="item-name">Tequifresa</span><span class="item-price">4,00€ / 2,50€</span></div>
+      <div class="item"><span class="item-name">Licor de hierbas</span><span class="item-price">4,00€ / 2,50€</span></div>
+      <div class="item"><span class="item-name">Crema de orujo</span><span class="item-price">4,00€ / 2,50€</span></div>
+      <div class="item"><span class="item-name">Coñac</span><span class="item-price">4,00€ / 2,50€</span></div>
+      <div class="item"><span class="item-name">Jägermeister</span><span class="item-price">4,00€ / 2,50€</span></div>
+    </div>
+    <div class="subsection"><div class="subsection-title">Pisco</div></div>
+    <div class="drinks-grid">
+      <div class="item"><span class="item-name">Alto del Carmen</span><span class="item-price">6,00€</span></div>
+      <div class="item"><span class="item-name">Mistral</span><span class="item-price">7,00€</span></div>
+    </div>
+  </div>
+
+  <!-- CTA RESERVA -->
+  <div class="cta-box" id="reservar">
+    <div class="cta-title">¿Te apetece?</div>
+    <div class="cta-sub">Reserva tu mesa y ven a disfrutar</div>
+    <a href="https://wa.me/34634665459?text=Hola!%20Quiero%20reservar%20mesa%20en%20Santa%20Lolita" class="cta-btn" target="_blank">📲 Reservar por WhatsApp</a>
+    <div style="margin-top:12px;">
+      <a href="tel:+34634665459" style="color:#888;font-size:13px;text-decoration:none;">o llama al 634 665 459</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong style="color:#888;">Taberna Santa Lolita</strong><br>
+    📍 Calle Francisco Silvela, 73 · Madrid 28028<br>
+    📞 634 665 459 · ✉️ santalolita@descorchehosteleria.com<br><br>
+    <a href="https://www.instagram.com/tabernasantalolita/">@tabernasantalolita</a>
+  </div>
+
+</div>
+
+</body>
+</html>
